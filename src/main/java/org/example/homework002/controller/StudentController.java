@@ -17,15 +17,16 @@ import java.util.List;
 public class StudentController {
 
     private final StudentService studentService;
+
     public StudentController(StudentService studentService) {
         this.studentService = studentService;
     }
 
     @GetMapping
-    public ResponseEntity<ApiResponse<List<Student>>> getAllStudents(@RequestParam(defaultValue = "10") Integer size , @RequestParam(defaultValue = "1")Integer page) {
-        ApiResponse<List<Student>> response=ApiResponse.<List<Student>>builder()
+    public ResponseEntity<ApiResponse<List<Student>>> getAllStudents(@RequestParam(defaultValue = "10") Integer size, @RequestParam(defaultValue = "1") Integer page) {
+        ApiResponse<List<Student>> response = ApiResponse.<List<Student>>builder()
                 .message("All student has been sucessfully fetched")
-                .payload(studentService.getAllStudents(size,page))
+                .payload(studentService.getAllStudents(size, page))
                 .status(HttpStatus.OK)
                 .timestamp(LocalDateTime.now())
                 .build();
@@ -35,13 +36,13 @@ public class StudentController {
 
     @GetMapping("/{student-id}")
     public ResponseEntity<ApiResponse<Student>> getStudentById(@PathVariable("student-id") Integer studentId) {
-        ApiResponse<Student> response=ApiResponse.<Student>builder()
+        ApiResponse<Student> response = ApiResponse.<Student>builder()
                 .message("Student has been sucessfully founded")
                 .payload(studentService.getStudentById(studentId))
                 .status(HttpStatus.OK)
                 .timestamp(LocalDateTime.now())
                 .build();
-       return   ResponseEntity.ok(response);
+        return ResponseEntity.ok(response);
 
     }
 
@@ -51,10 +52,14 @@ public class StudentController {
         return studentService.insertStudent(student);
     }
 
-
-
-
-
-
-
+    @DeleteMapping("/{student-id}")
+    public ResponseEntity<ApiResponse<Student>> deleteStudent(@PathVariable("student-id") Integer studentId) {
+        ApiResponse<Student> response = ApiResponse.<Student>builder()
+                .message("Student has been sucessfully deleted")
+                .payload(studentService.deleteStudent(studentId))
+                .status(HttpStatus.OK)
+                .timestamp(LocalDateTime.now())
+                .build();
+        return ResponseEntity.ok(response);
+    }
 }

@@ -10,4 +10,5 @@ public interface StudentService {
   Student getStudentById(Integer id);
   Student addStudent(StudentRequest student);
  Student insertStudent(StudentRequest student);
+ Student deleteStudent(Integer id);
 }

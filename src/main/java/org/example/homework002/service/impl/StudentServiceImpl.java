@@ -40,7 +40,11 @@ public class StudentServiceImpl implements  StudentService {
        for(Integer courseId:studentRequest.getCourse_id()){
            courseRepository.insertStudentAndCourse(st.getId(), courseId);
        }
-
         return studentRepository.getStudentById(st.getId());
+    }
+
+    @Override
+    public Student deleteStudent(Integer id) {
+        return studentRepository.deleteStudentById(id);
     }
 }

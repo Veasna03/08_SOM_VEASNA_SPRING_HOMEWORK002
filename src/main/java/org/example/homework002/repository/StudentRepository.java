@@ -52,5 +52,11 @@ RETURNING *;
     Student insertStudent(@Param("request") StudentRequest student);
 
 
+       @Select("""
+   delete from students where student_id=#{id}
+   RETURNING * ;
+""")
+       @ResultMap("studentMapper")
+     Student deleteStudentById(Integer id);
 
 }
