@@ -41,6 +41,6 @@ public class StudentServiceImpl implements  StudentService {
            courseRepository.insertStudentAndCourse(st.getId(), courseId);
        }
 
-        return null;
+        return studentRepository.getStudentById(st.getId());
     }
 }
