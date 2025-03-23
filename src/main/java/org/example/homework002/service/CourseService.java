@@ -12,7 +12,7 @@ public interface CourseService {
     List<Course> getAllCourseByStudentId(Integer studentId);
     Course updateCourse(Integer id,CourseRequest course);
     Course deleteCourse(Integer id);
-
+    Course getCourseById(Integer id);
 
 
 

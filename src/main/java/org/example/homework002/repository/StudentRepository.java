@@ -42,7 +42,14 @@ insert into students (student_name,email,phone_number) values (#{student.name},#
     Student addStudent(@Param("student") StudentRequest student);
 
 
-
+@Select("""
+INSERT INTO students(student_name,email,phone_number) 
+values(#{request.name},#{request.email},#{request.phone_number})
+RETURNIN *;
+""")
+    @ResultMap("studentMapper")
+    @Result(property = "id",column = "course_id",many = @Many(select = "org.example.homework002.repository.CourseRepository.getCourseById"))
+    Student insertStudent(@Param("request") StudentRequest student);
 
 
 

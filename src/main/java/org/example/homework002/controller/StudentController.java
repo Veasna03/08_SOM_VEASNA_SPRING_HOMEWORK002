@@ -34,16 +34,23 @@ public class StudentController {
 
 
     @GetMapping("/{student-id}")
-    public Student getStudentById(@PathVariable("student-id") Integer studentId) {
-       return   studentService.getStudentById(studentId);
+    public ResponseEntity<ApiResponse<Student>> getStudentById(@PathVariable("student-id") Integer studentId) {
+        ApiResponse<Student> response=ApiResponse.<Student>builder()
+                .message("Student has been sucessfully founded")
+                .payload(studentService.getStudentById(studentId))
+                .status(HttpStatus.OK)
+                .timestamp(LocalDateTime.now())
+                .build();
+       return   ResponseEntity.ok(response);
 
     }
 
 
     @PostMapping
     public Student addStudent(@RequestBody StudentRequest student) {
-        return studentService.addStudent(student);
+        return studentService.insertStudent(student);
     }
+
 
 
 

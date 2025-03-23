@@ -44,10 +44,10 @@ public class CurseController {
 
 
       @GetMapping("/{course-id}")
-    public ResponseEntity<ApiResponse<List<Course>>> getAllCourseByStudentId(@PathVariable("course-id") Integer id) {
-        ApiResponse<List<Course>> response=ApiResponse.<List<Course>>builder()
+    public ResponseEntity<ApiResponse<Course>> getCourseBYtId(@PathVariable("course-id") Integer id) {
+        ApiResponse<Course> response=ApiResponse.<Course>builder()
                 .message("Course has been successfully founded")
-                .payload(courseService.getAllCourseByStudentId(id))
+                .payload(courseService.getCourseById(id))
                 .status(HttpStatus.OK)
                 .timestamp(LocalDateTime.now())
                 .build();

@@ -9,5 +9,5 @@ public interface StudentService {
   List<Student> getAllStudents(Integer size, Integer page);
   Student getStudentById(Integer id);
   Student addStudent(StudentRequest student);
-
+ Student insertStudent(StudentRequest student);
 }

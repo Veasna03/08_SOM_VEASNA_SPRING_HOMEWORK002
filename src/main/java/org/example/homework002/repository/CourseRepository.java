@@ -50,4 +50,17 @@ public interface CourseRepository {
     Course deleteCourse(Integer id);
 
 
+    @Select("""
+      SELECT * from courses where course_id=#{id}
+""")
+    @ResultMap("courseMapper")
+    Course getCourseById(Integer id);
+
+    @Select("""
+insert into student_course(student_id,course_id) values (#{studentId},#{courseId})
+
+""")
+    void insertStudentAndCourse(@Param("studentId") Integer studentId, @Param("courseId") Integer courseId);
+
+
 }
